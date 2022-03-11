@@ -10,7 +10,7 @@ import {
 
 interface ModalViewImageProps {
   isOpen: boolean;
-  onClose: () => void;
+  onClose?: () => void;
   imgUrl: string;
 }
 
@@ -18,6 +18,20 @@ export function ModalViewImage({
   isOpen,
   onClose,
   imgUrl,
-}: ModalViewImageProps): JSX.Element {
-  // TODO MODAL WITH IMAGE AND EXTERNAL LINK
+}: ModalViewImageProps) {
+  return (
+    <Modal isOpen={isOpen} onClose={onClose} isCentered>
+      <ModalOverlay />
+      <ModalContent bg="pGray.800" maxW="900px" maxH="600">
+        <ModalBody>
+          <Image src={imgUrl} />
+        </ModalBody>
+        <ModalFooter>
+          <Link href={imgUrl} isExternal>
+            Abrir original
+          </Link>
+        </ModalFooter>
+      </ModalContent>
+    </Modal>
+  );
 }
